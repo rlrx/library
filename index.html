@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Ryan's Library</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Library</h1>
+        <button class="newbook">New Book</button>
+    </div>
+    <div class="body">
+        <div class="book">
+            <div class="author">Author</div>
+            <div class="title">Title</div>
+            <div class="numOfPages">NumOfPages</div>
+            <button class="read">Read</button>
+        </div>
+        <div class="book">
+            <div class="author">Author</div>
+            <div class="title">Title</div>
+            <div class="numOfPages">NumOfPages</div>
+            <button class="read">Read</button>
+        </div>
+        <dialog>
+            <h2>Add new book</h2>
+            <form name="newBookForm">
+                <div>
+                    <label for="author"></label>
+                    <input type="text" id="author" name="author" placeholder="Author">
+                </div>
+                <div>
+                    <label for="title"></label>
+                    <input type="text" id="title" name="title" placeholder="Title">
+                </div>
+                <div>
+                    <label for="numOfPages"></label>
+                    <input type="number" id="numOfPages" name="numOfPages" placeholder="Number Of Pages">
+                </div>
+                <div>
+                    <label for="read">Have you read it?</label>
+                    <input type="checkbox" id="read" name="read" value="yes">
+                </div>
+                <button class="submit">Submit</button>
+            </form>
+        </dialog>
+    </div>
+    <div class="footer">
+        <h6>Copyright OriginalRyan</h6>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
