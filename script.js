@@ -51,6 +51,7 @@ function displayBooks(bookArray) {
         const pagesDiv = document.createElement('div');
         pagesDiv.textContent = numOfPages;
         const readDiv = document.createElement('button');
+        readDiv.classList.add('readButton');
         if(read == true){
             readDiv.textContent = "Read";
         }
@@ -67,5 +68,18 @@ function displayBooks(bookArray) {
     })
 }
 
-const submitButton = document.querySelector('.submit')
+const submitButton = document.querySelector('.submit');
 submitButton.addEventListener("click", addBookToLibrary);
+
+// implementing read button toggle
+document.addEventListener("click", (event) => {
+    if(event.target.classList.contains('readButton')){
+        const readButton = event.target;
+        if(readButton.textContent === "Read"){
+            readButton.textContent = "Not Read";
+        }
+        else{
+            readButton.textContent = "Read";
+        }
+    }
+})
