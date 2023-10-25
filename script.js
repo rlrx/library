@@ -29,8 +29,14 @@ function addBookToLibrary(event) {
     let isRead = read === 'yes'; // set isRead to true if checkbox ticked
 
     const newBook = new Book(author, title, numOfPages, isRead) // create new book object
-    myLibrary.push(newBook);
+    myLibrary.push(newBook); // push the newbook object to the array
     console.log(myLibrary);
+    // remove the existing books in DOM
+    let bookshelf = document.querySelector(".body");
+    let books = document.querySelectorAll(".book");
+    books.forEach((book) => {
+        bookshelf.removeChild(book);
+    })
     displayBooks(myLibrary);
 }
 
@@ -75,11 +81,24 @@ submitButton.addEventListener("click", addBookToLibrary);
 document.addEventListener("click", (event) => {
     if(event.target.classList.contains('readButton')){
         const readButton = event.target;
-        if(readButton.textContent === "Read"){
-            readButton.textContent = "Not Read";
-        }
-        else{
-            readButton.textContent = "Read";
+
+        // Find the parent book element of the clicked button
+        const bookDiv = readButton.closest('.book');
+        if(bookDiv){
+            const bookIndex = Array.from(bookDiv.parentElement.children).indexOf(bookDiv) - 1;
+            console.log(bookIndex);
+            if(bookIndex != -1){
+                // update the read attribute
+                myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
+
+                // update the button text content
+                if(myLibrary[bookIndex].read){
+                    readButton.textContent = "Read";
+                }
+                else{
+                    readButton.textContent = "Not Read";
+                }
+            }
         }
     }
 })
