@@ -56,18 +56,22 @@ function displayBooks(bookArray) {
         titleDiv.textContent = title;
         const pagesDiv = document.createElement('div');
         pagesDiv.textContent = numOfPages;
-        const readDiv = document.createElement('button');
-        readDiv.classList.add('readButton');
+        const readButton = document.createElement('button');
+        readButton.classList.add('readButton');
         if(read == true){
-            readDiv.textContent = "Read";
+            readButton.textContent = "Read";
         }
         else{
-            readDiv.textContent = "Not Read";
+            readButton.textContent = "Not Read";
         }
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('deleteButton');
+        deleteButton.textContent = "Delete book";
         bookDiv.appendChild(authorDiv);
         bookDiv.appendChild(titleDiv);
         bookDiv.appendChild(pagesDiv);
-        bookDiv.appendChild(readDiv);
+        bookDiv.appendChild(readButton);
+        bookDiv.appendChild(deleteButton);
 
         const bookshelf = document.querySelector(".body");
         bookshelf.appendChild(bookDiv);
@@ -99,6 +103,32 @@ document.addEventListener("click", (event) => {
                     readButton.textContent = "Not Read";
                 }
             }
+        }
+    }
+})
+
+// implementing delete button 
+document.addEventListener("click", (event) => {
+    console.log(myLibrary);
+    if(event.target.classList.contains('deleteButton')){
+        const deleteButton = event.target;
+
+        // Find the parent book element of the clicked button
+        const bookDiv = deleteButton.closest('.book');
+        if(bookDiv){
+            const bookIndex = Array.from(bookDiv.parentElement.children).indexOf(bookDiv) - 1;
+            // remove the book object from the book array
+            if(bookIndex != -1){
+                myLibrary.splice(bookIndex, 1);
+            }
+            // remove all books from DOM
+            let bookshelf = document.querySelector(".body");
+            let books = document.querySelectorAll(".book");
+            books.forEach((book) => {
+                bookshelf.removeChild(book);
+            })
+            // redisplay books from dom based on updated book array
+            displayBooks(myLibrary);
         }
     }
 })
