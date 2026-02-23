@@ -11,6 +11,11 @@ class Book {
 	getReadLabel() {
 		return this.read ? "Read" : "Not Read";
 	}
+	info() {
+		console.log(
+			`${this.title} by  ${this.author}, ${this.numOfPages} pages, ${this.getReadLabel}`
+		);
+	}
 }
 
 export { Book };

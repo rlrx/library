@@ -20,6 +20,10 @@ class LibraryApp {
 		this.dialog.showModal();
 	}
 
+	closeDialog() {
+		this.dialog.close();
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 		const formData = new FormData(document.forms.newBookForm);
@@ -29,6 +33,7 @@ class LibraryApp {
 		const readCheckbox = document.getElementById("read");
 		const read = readCheckbox.checked;
 		const newBook = new Book(author, title, numOfPages, read);
+		newBook.info();
 		this.library.addBook(newBook);
 		this.render();
 		console.log(this.library);
@@ -36,6 +41,11 @@ class LibraryApp {
 
 	handleClick(event) {
 		const target = event.target;
+
+		// toggle close form
+		if (target.classList.contains("closeForm")) {
+			this.closeDialog();
+		}
 
 		// toggle read
 		if (target.classList.contains("readButton")) {
